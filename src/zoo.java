@@ -33,13 +33,32 @@ public class zoo {
     }*/
 }
 
-class Tiger {
+class Tiger extends Animal {
+
+    public Tiger(String name) {
+        super(name, "meat");
+    }
+
+}
+
+class Bear extends Animal{
+
+    public Bear(String name){
+        super(name, "fish");
+    }
+
+    public void sleep() {
+        System.out.println(this.name + " hibernates for 4 months");
+    }
+}
+
+class Animal{
     String name;
     String favoriteFood;
 
-    public Tiger(String name) {
+    public Animal(String name, String favoriteFood){
         this.name = name;
-        this.favoriteFood = "meat";
+        this.favoriteFood = favoriteFood;
     }
 
     public void sleep() {
@@ -53,37 +72,5 @@ class Tiger {
         }else{
             this.sleep();
         }
-    }
-
-    public static void main(String[] args) {
-        //either make a new instance of a zoo
-        //to call the non-static sleep method....
-        Tiger tigger = new Tiger("Tigger");
-        tigger.eat("meat");
-        tigger.eat("kibble");
-
-    }
-}
-
-class Bear{
-    String name;
-    String favoriteFood;
-
-    public Bear(String name){
-        this.name = name;
-        this.favoriteFood = "fish";
-    }
-
-    public void eat(String food) {
-        System.out.println(this.name + " eats " + food);
-        if(food == this.favoriteFood){
-            System.out.println("YUM! " + this.name + " wants more " + food);
-        }else{
-            this.sleep();
-        }
-    }
-
-    public void sleep() {
-        System.out.println(this.name + " hibernates for 4 months");
     }
 }
