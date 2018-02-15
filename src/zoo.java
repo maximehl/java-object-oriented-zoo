@@ -3,6 +3,10 @@ public class zoo {
         Tiger tigger = new Tiger("Tigger");
         tigger.eat("meat");
         tigger.eat("kibble");
+        Bear pooh = new Bear("Pooh");
+        pooh.eat("fish");
+        pooh.eat("meat");
+
     }
 
     /*
@@ -61,3 +65,25 @@ class Tiger {
     }
 }
 
+class Bear{
+    String name;
+    String favoriteFood;
+
+    public Bear(String name){
+        this.name = name;
+        this.favoriteFood = "fish";
+    }
+
+    public void eat(String food) {
+        System.out.println(this.name + " eats " + food);
+        if(food == this.favoriteFood){
+            System.out.println("YUM! " + this.name + " wants more " + food);
+        }else{
+            this.sleep();
+        }
+    }
+
+    public void sleep() {
+        System.out.println(this.name + " hibernates for 4 months");
+    }
+}
