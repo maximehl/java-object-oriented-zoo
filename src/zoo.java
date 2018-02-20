@@ -2,11 +2,19 @@ public class zoo {
     public static void main(String[] args){
         Tiger tigger = new Tiger("Tigger");
         tigger.eat("meat");
-        tigger.eat("kibble");
         Bear pooh = new Bear("Pooh");
         pooh.eat("fish");
         pooh.eat("meat");
-
+        Unicorn rarity = new Unicorn("Rarity");
+        rarity.eat("marshmallows");
+        rarity.sleep();
+        Giraffe gemma = new Giraffe("Gemma");
+        gemma.eat("meat");
+        gemma.eat("leaves");
+        gemma.sleep();
+        Bee stinger = new Bee("Stinger");
+        stinger.eat("ice cream");
+        stinger.eat("pollen");
     }
 
     /*
@@ -67,10 +75,60 @@ class Animal{
 
     public void eat(String food) {
         System.out.println(this.name + " eats " + food);
-        if(food == this.favoriteFood){
-            System.out.println("YUM! " + this.name + " wants more " + food);
+        if(food.equals(this.favoriteFood)){
+            System.out.println("YUM!!! " + this.name + " wants more " + food);
         }else{
             this.sleep();
         }
+    }
+}
+
+class Unicorn extends Animal{
+
+    public Unicorn(String name){
+        super(name, "marshmallows");
+    }
+
+    public void sleep() {
+        System.out.println(this.name + " sleeps in a cloud");
+    }
+}
+
+class Giraffe extends Animal{
+
+    public Giraffe(String name){
+        super(name, "leaves");
+    }
+
+    public void eat(String food){
+        if(food.equals(this.favoriteFood)){
+            super.eat(food);
+        }else{
+            System.out.println("YUCK!!! " + this.name + " will not eat " + food);
+        }
+    }
+
+    public void sleep() {
+        System.out.println(this.name + " hibernates for 4 months");
+    }
+}
+
+class Bee extends Animal{
+
+    public Bee(String name){
+        super(name, "pollen");
+    }
+
+    public void eat(String food){
+        if(food.equals(this.favoriteFood)){
+            super.eat(food);
+            this.sleep();
+        }else{
+            System.out.println("YUCK!!! " + this.name + " will not eat " + food);
+        }
+    }
+
+    public void sleep() {
+        System.out.println(this.name + " never sleeps");
     }
 }
