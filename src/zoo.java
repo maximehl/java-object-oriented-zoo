@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class zoo {
     public static void main(String[] args){
         Tiger tigger = new Tiger("Tigger");
@@ -15,30 +17,11 @@ public class zoo {
         Bee stinger = new Bee("Stinger");
         stinger.eat("ice cream");
         stinger.eat("pollen");
+        Zookeeper zoebot = new Zookeeper("Zoebot");
+        ArrayList<Animal> animals = new ArrayList<>();
+        animals.add(tigger); animals.add(pooh); animals.add(rarity); animals.add(gemma); animals.add(stinger);
+        zoebot.feedAnimals(animals, "the mysterious vapours of the universe");
     }
-
-    /*
-    //not using this code anymore because I now have a Tiger class
-
-    public static void main(String[] args) {
-        zoo z = new zoo();
-        z.sleep("Tigger");
-        z.eat("Tigger", "meat");
-        z.eat("Tigger", "bacon");
-    }
-
-    public void sleep(String name) {
-        System.out.println(name + " sleeps for 8 hours");
-    }
-    String favoriteFood = "bacon";
-    public void eat(String name, String food){
-        System.out.println(name + " eats " + food);
-        if(food.equals(favoriteFood)){
-            System.out.println("YUM!!! " + name + " wants more " + food);
-        }else{
-            sleep(name);
-        }
-    }*/
 }
 
 class Tiger extends Animal {
@@ -63,10 +46,12 @@ class Bear extends Animal{
 class Animal{
     String name;
     String favoriteFood;
+    static int population;
 
     public Animal(String name, String favoriteFood){
         this.name = name;
         this.favoriteFood = favoriteFood;
+        Animal.population++;
     }
 
     public void sleep() {
@@ -80,6 +65,10 @@ class Animal{
         }else{
             this.sleep();
         }
+    }
+
+    public static int populationCount(){
+        return population;
     }
 }
 
@@ -130,5 +119,20 @@ class Bee extends Animal{
 
     public void sleep() {
         System.out.println(this.name + " never sleeps");
+    }
+}
+
+class Zookeeper{
+    String name;
+    public Zookeeper(String name){
+        this.name = name;
+    }
+
+    public void feedAnimals(ArrayList<Animal> animals, String food){
+        System.out.println(this.name + " is feeding " + food + " to " + animals.size() + " of " +
+                Animal.populationCount() + " total animals");
+        for (int n = 0; n<animals.size(); n++) {
+            animals.get(n).eat(food);
+        }
     }
 }
